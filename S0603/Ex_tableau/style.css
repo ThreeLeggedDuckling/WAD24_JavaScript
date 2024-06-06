@@ -4,16 +4,41 @@ td {
     border : 1px solid black;
     width: 20px;
     height: 20px;
+
 }
 
-.exmplYellow {
-    background-color: yellow;
-}
-
-.JAUNE {
+.exmplYellow, .JAUNE {
     background-color: yellow;
 }
 
 .exmplBlue {
     background-color: blue;
+}
+
+
+
+/*   EXERCICE   */
+
+table {
+    border-collapse: collapse;
+}
+
+.R {
+    color: red;
+    background-color: red;
+}
+
+.J {
+    color: yellow;
+    background-color: yellow;
+}
+
+.B {
+    color: blue;
+    background-color: blue;
+}
+
+.N {
+    color: black;
+    background-color: black;
 }
