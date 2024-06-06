@@ -1,0 +1,19 @@
+/*   EXEMPLE   */
+
+td {
+    border : 1px solid black;
+    width: 20px;
+    height: 20px;
+}
+
+.exmplYellow {
+    background-color: yellow;
+}
+
+.JAUNE {
+    background-color: yellow;
+}
+
+.exmplBlue {
+    background-color: blue;
+}

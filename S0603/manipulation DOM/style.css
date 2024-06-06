@@ -1,0 +1,20 @@
+.para {
+    font-size: larger;
+}
+
+.blue {
+    background-color: cornflowerblue;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.red {
+    background-color: darkred;
+}
+
+.tog {
+    background-color: black;
+    color: white;
+}
