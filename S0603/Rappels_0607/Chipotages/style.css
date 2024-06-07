@@ -1,0 +1,20 @@
+#test1 th, td:not(:first-child) {
+    padding: 5px;
+    text-align: center;
+}
+
+#catalog td:nth-last-child(2) {
+    font-weight: bolder;
+    background-color: green;
+    border: 1px solid black;
+}
+
+#catalog td:last-child {
+    font-weight: bolder;
+    background-color: red;
+    border: 1px solid black;
+}
+
+#bill tfoot td:last-of-type {
+    text-align: right;
+}

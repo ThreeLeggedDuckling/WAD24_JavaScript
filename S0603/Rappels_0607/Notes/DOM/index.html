@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Rappels du 06.07</title>
+</head>
+
+<body>
+
+    <h1>Pizzaria Di Italia</h1>
+
+    <h2>Menu</h2>
+
+    <div>
+        <h3>Pizzas</h3>
+        <ul>
+            <li>
+                <strong>Margarita - <span id="price">10.00</span></strong><br>
+                <label for="add">Ajouter</label>
+                <input type="number" name="add" id="add">
+            </li>
+            <li>Hawaii</li>
+            <li>Calzone</li>
+        </ul>
+    </div>
+
+    <div>
+        <h3>Pâtes</h3>
+        <ul id="pasta_list">
+            <li>Carbonara</li>
+            <li>Pesto</li>
+            <li>Bolognaise</li>
+        </ul>
+    </div>
+
+    <div>
+        <h2>Panier</h2>
+        <p>Somme : <span id="sum"></span></p>
+    </div>
+
+    <div>
+        <h2>Contact</h2>
+
+        <label for="pseudo">Pseudo : </label>
+        <input type="text" name="pseudo" id="pseudo">
+
+        <br>
+
+        <label for="message">Comentaire : </label>
+        <textarea name="message" id="message"></textarea>
+
+        <button id="btn_send">Envoyer</button>
+    </div>
+</body>
+
+</html>
