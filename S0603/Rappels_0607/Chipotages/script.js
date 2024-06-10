@@ -21,38 +21,62 @@ margarita.addEventListener('click', function () {
 
 
 
+
+
 ////////     CHIPOTAGEs PERSO     ////////
 
 const productsTable = document.querySelector('#catalog tbody');
 const summary = document.querySelector('#bill tbody');
-const total = document.querySelector('#bill tfoot td:last-of-type')
-// console.log(total.textContent);
+const total = document.querySelector('#bill tfoot td:last-of-type');
+
+const productsCol = productsTable.querySelectorAll('tr td:first-child');
+const addCol = productsTable.querySelectorAll('tr td:nth-last-child(2)');
+const removeCol = productsTable.querySelectorAll('tr td:last-child');
+
+let prdName, prdTotPrc;
+let prdQntt = 0;
 
 
-const addA = productsTable.firstElementChild.children[2];
-const remA = productsTable.firstElementChild.children[3];
+addCol.forEach(cell => {
+    cell.addEventListener('click', () => addTo(cell));
+});
 
-let prdName, prdQntt = 0, prdTotPrc;
+removeCol.forEach(cell => {
+    cell.addEventListener('click', () => removeFrom(cell));
+})
 
-function addTo(cell){
+
+function addTo(cell) {
     prdName = cell.parentElement.children[0].textContent;
     prdQntt++;
     prdTotPrc = parseFloat(cell.parentElement.children[1].textContent) * prdQntt;
     prdTotPrc = prdTotPrc.toFixed(2);
 
-    summary.innerHTML += `<tr><td>${prdName}</td><td>${prdQntt}</td><td>${prdTotPrc}</td></tr>`;
+    if (summary.querySelectorAll(`.${prdName}`).length > 0) {
+        summary.querySelector(`.${prdName}`).innerHTML = `<td>${prdName}</td><td>${prdQntt}</td><td;>${prdTotPrc}</td>`;
+    }
+    else {
+        summary.innerHTML += `<tr class='${prdName}'><td>${prdName}</td><td>${prdQntt}</td><td>${prdTotPrc}</td></tr>`;
+    };
 }
 
-addA.addEventListener('click', addTo(addA));
-
-remA.addEventListener('click', function(){
-
-    prdName = addA.parentElement.children[0].textContent;
+function removeFrom(cell) {
+    prdName = cell.parentElement.children[0].textContent;
     prdQntt--;
-    prdTotPrc = parseFloat(addA.parentElement.children[1].textContent) * prdQntt;
+    prdTotPrc = parseFloat(cell.parentElement.children[1].textContent) * prdQntt;
     prdTotPrc = prdTotPrc.toFixed(2);
 
-    console.log(prdName, prdQntt, prdTotPrc);
+    if ((summary.querySelectorAll(`.${prdName}`).length > 0) && (prdQntt > 0)) {
+        summary.querySelector(`.${prdName}`).innerHTML = `<td>${prdName}</td><td>${prdQntt}</td><td;>${prdTotPrc}</td>`;
+    }
+    else {
+        summary.innerHTML -= `<tr class='${prdName}'><td>${prdName}</td><td>${prdQntt}</td><td>${prdTotPrc}</td></tr>`;
+        summary.textContent = "";
+    };
+};
 
-    summary.innerHTML += `<tr><td>${prdName}</td><td>${prdQntt}</td><td>${prdTotPrc}</td></tr>`;
-});
+
+
+
+// addA.addEventListener('click', () => addOne(addA));
+// remA.addEventListener('click', () => removeOne(remA));
