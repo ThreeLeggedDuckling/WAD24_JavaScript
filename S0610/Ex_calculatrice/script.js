@@ -104,23 +104,32 @@ const exeKey = document.querySelector('tbody tr:last-child td:nth-child(3)')
 
 
 numKeys.forEach(key => {
+    key.classList.add('numKey');
     key.addEventListener('click', function(){
-        display.textContent += key.textContent;
+        if(display.classList.contains('rslt')){
+            display.textContent = key.textContent;
+            display.classList.remove('rslt');
+        }
+        else {
+            display.textContent += key.textContent;
+        }
     })
 });
 
 oprKey.forEach(key => {
+    key.classList.add('oprKey');
     key.addEventListener('click', function(){
         if(display.textContent.length != 0){
-            if(display.classList.length == 0){
+            if(display.classList.length == 0 || display.classList.contains('rslt')){
                 display.classList.add(key.textContent);
+                display.classList.remove('rslt');
                 display.textContent += key.textContent;
-                console.log(display.classList.toString());
             }
         }
     })
 });
 
+exeKey.classList.add('exeKey');
 exeKey.addEventListener('click', function(){
     let oprList = "-+÷×";
     let expression = display.textContent;
@@ -145,6 +154,7 @@ exeKey.addEventListener('click', function(){
         }
     
         display.textContent = result;
+        display.classList.add('rslt');
         display.classList.remove(opr);
     }
 })

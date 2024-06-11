@@ -1,0 +1,38 @@
+body {
+    color: white;
+    background-color: #1c1b22;
+}
+
+table {
+    height: 200px;
+    width: 150px;
+    background-color: #b5a5c2;
+    border-radius: 5px;
+    padding: 4px;
+    font-weight: bold;
+}
+
+table td {
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 7px;
+    text-align: center;
+}
+
+thead td {
+    height: 35px;
+    color: #3d3a33;
+    background-color: #ccdbd5;
+}
+
+.numKey {
+    background-color: #8e95c5;
+}
+
+.oprKey {
+    background-color: #b875c5;
+}
+
+.exeKey {
+    background-color: #98c5ad;
+}
