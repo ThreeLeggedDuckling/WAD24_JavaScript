@@ -22,4 +22,5 @@ e5.innerHTML += `<p> → ${s5}</p>`;
 
 const e6 = document.getElementById('e6');
 let s6 = [...str].reverse().join('');
+s6 = str.split('').reverse().join('');
 e6.innerHTML += `<p> → ${s6}</p>`;

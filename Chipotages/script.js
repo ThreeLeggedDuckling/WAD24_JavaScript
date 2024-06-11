@@ -34,7 +34,11 @@ const addCol = productsTable.querySelectorAll('tr td:nth-last-child(2)');
 const removeCol = productsTable.querySelectorAll('tr td:last-child');
 
 let prdName, prdTotPrc;
-let prdQntt = 0;
+let qntt = {};
+productsCol.forEach(product => {
+    qntt[`${product.textContent}`] = 0;
+});
+console.log(qntt);
 
 
 addCol.forEach(cell => {
@@ -48,34 +52,34 @@ removeCol.forEach(cell => {
 
 function addTo(cell) {
     prdName = cell.parentElement.children[0].textContent;
-    prdQntt++;
-    prdTotPrc = parseFloat(cell.parentElement.children[1].textContent) * prdQntt;
+    qntt[`${prdName}`]++;
+    prdTotPrc = parseFloat(cell.parentElement.children[1].textContent) * qntt[`${prdName}`];
     prdTotPrc = prdTotPrc.toFixed(2);
 
     if (summary.querySelectorAll(`.${prdName}`).length > 0) {
-        summary.querySelector(`.${prdName}`).innerHTML = `<td>${prdName}</td><td>${prdQntt}</td><td;>${prdTotPrc}</td>`;
+        summary.querySelector(`.${prdName}`).innerHTML = `<td>${prdName}</td><td>${qntt[`${prdName}`]}</td><td>${prdTotPrc}</td>`;
     }
     else {
-        summary.innerHTML += `<tr class='${prdName}'><td>${prdName}</td><td>${prdQntt}</td><td>${prdTotPrc}</td></tr>`;
+        summary.innerHTML += `<tr class='${prdName}'><td>${prdName}</td><td>${qntt[`${prdName}`]}</td><td>${prdTotPrc}</td></tr>`;
     };
 }
 
 function removeFrom(cell) {
     prdName = cell.parentElement.children[0].textContent;
-    prdQntt--;
-    prdTotPrc = parseFloat(cell.parentElement.children[1].textContent) * prdQntt;
+    if (qntt[`${prdName}`] > 0){
+        qntt[`${prdName}`]--;
+    }
+    prdTotPrc = parseFloat(cell.parentElement.children[1].textContent) * qntt[`${prdName}`];
     prdTotPrc = prdTotPrc.toFixed(2);
 
-    if ((summary.querySelectorAll(`.${prdName}`).length > 0) && (prdQntt > 0)) {
-        summary.querySelector(`.${prdName}`).innerHTML = `<td>${prdName}</td><td>${prdQntt}</td><td;>${prdTotPrc}</td>`;
+    if ((summary.querySelectorAll(`.${prdName}`).length > 0) && (qntt[`${prdName}`] > 0)) {
+        summary.querySelector(`.${prdName}`).innerHTML = `<td>${prdName}</td><td>${qntt[`${prdName}`]}</td><td>${prdTotPrc}</td>`;
     }
     else {
-        summary.innerHTML -= `<tr class='${prdName}'><td>${prdName}</td><td>${prdQntt}</td><td>${prdTotPrc}</td></tr>`;
+        summary.innerHTML -= `<tr class='${prdName}'><td>${prdName}</td><td>${qntt[`${prdName}`]}</td><td>${prdTotPrc}</td></tr>`;
         summary.textContent = "";
     };
 };
-
-
 
 
 // addA.addEventListener('click', () => addOne(addA));
