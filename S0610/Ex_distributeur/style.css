@@ -1,12 +1,81 @@
+/*   FOMRAT DE BASE   */
+
 body {
     color: white;
     background-color: #1c1b22;
+    margin: 0;
 }
 
 table {
-    border: 1px solid white;
+    text-align: center;
+    background-color: #706a80;
+
+    border: 2px solid white;
+    border-radius: 10px;
 }
 
 table td {
     padding: 5px;
+}
+
+
+
+/*   FORMAT SOUS TABLEAUX   */
+
+#products {
+    width: 375px;
+    height: 250px;
+
+    background-color: #070008de;
+    box-shadow: inset #d8d8d8a9 0px 0px 25px;
+
+}
+
+#products td {
+    width: 25%;
+}
+
+#display {
+    width: 180px;
+    height: 100px;
+
+    background-color: #3c4743;
+}
+
+#display td {
+    height: 50%;
+}
+
+#numPad {
+    width: 180px;
+    height: 135px;
+
+    background-color: rgb(30, 18, 49);
+    border: none;
+}
+
+#numPad td {
+    width: 30%;
+    height: 25%;
+
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 3px solid rgb(50, 0, 50);
+    border-radius: 50px;
+    background-color: rgb(80, 0, 80);
+}
+
+#door {
+    width: 570px;
+    height: 70px;
+    border-collapse: collapse;
+}
+
+#door td:nth-child(2) {
+    width: 40%;
+}
+
+
+.open {
+    background-image: linear-gradient(#6a647a, #19181da2 75%);
 }

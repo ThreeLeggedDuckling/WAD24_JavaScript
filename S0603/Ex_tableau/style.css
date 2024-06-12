@@ -1,10 +1,9 @@
 /*   EXEMPLE   */
 
-td {
+.exmpl td {
     border : 1px solid black;
     width: 20px;
     height: 20px;
-
 }
 
 .exmplYellow, .JAUNE {
@@ -18,27 +17,62 @@ td {
 
 
 /*   EXERCICE   */
-
-table {
+#exo table {
     border-collapse: collapse;
+    margin: 10px;
 }
 
-.R {
-    color: red;
-    background-color: red;
+td {
+    border : 1px solid black;
+    width: 30px;
+    height: 30px;
+    font-size: 40%;
 }
 
-.J {
-    color: yellow;
-    background-color: yellow;
+.Red {
+    color: #ff0000;
+    background-color: #ff0000;
+    border: 1px solid #ff0000;
 }
 
-.B {
-    color: blue;
-    background-color: blue;
+.Orange {
+    color: #ff8000;
+    background-color: #ff8000;
+    border: 1px solid #ff8000;
 }
 
-.N {
-    color: black;
-    background-color: black;
+.Yellow {
+    color: #ffff00;
+    background-color: #ffff00;
+    border: 1px solid #ffff00;
+}
+
+.Green {
+    color: #00ff00;
+    background-color: #00ff00;
+    border: 1px solid #00ff00;
+}
+
+.Cyan {
+    color: #00ffff;
+    background-color: #00ffff;
+    border: 1px solid #00ffff;
+}
+
+.Blue {
+    color: #4000ff;
+    background-color: #4000ff;
+    border: 1px solid #4000ff;
+}
+
+.Pink {
+    color: #ff0080;
+    background-color: #ff0080;
+    border: 1px solid #ff0080;
+}
+
+.Black {
+    color: #000000;
+    background-color: #000000;
+    border: 1px solid #000000;
 }

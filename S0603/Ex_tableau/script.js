@@ -24,29 +24,24 @@ case1.addEventListener('click', function(){
 
 ///////   EXERCICE   ///////
 
-const red = document.querySelector('.R');
-const yellow = document.querySelector('.J');
-const blue = document.querySelector('.B');
-const black = document.querySelector('.N');
-
+const PALETTE = document.querySelectorAll('#palette td');
+const CELLS = document.querySelectorAll('#canvas tr td');
 let currentColor;
-red.addEventListener('click', function(){
-    currentColor = red.textContent;
-});
-yellow.addEventListener('click', function(){
-    currentColor = yellow.textContent;
-});
-blue.addEventListener('click', function(){
-    currentColor = blue.textContent;
-});
-black.addEventListener('click', function(){
-    currentColor = black.textContent;
-});
 
-let cells = document.querySelectorAll('#canvas tr td');
-console.dir(cells);
-cells.forEach(cell => {
+PALETTE.forEach(cell => {
+    cell.classList.add(`${cell.textContent}`);
     cell.addEventListener('click', function(){
-        cell.classList.toggle(currentColor);
+        currentColor = cell.textContent;
     });
 });
+
+CELLS.forEach(cell => {
+    cell.addEventListener('click', function(){
+        if(cell.classList.length > 0 && cell.className != currentColor){
+            cell.classList.replace(cell.className, currentColor);
+        }
+        else{
+            cell.classList.toggle(currentColor);
+        }
+    })
+})

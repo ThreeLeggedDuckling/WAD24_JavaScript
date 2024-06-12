@@ -5,31 +5,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>Distributeur</title>
 </head>
 
 <body>
-    <table id="machine">
+    <!-- boîte -->
+    <table id="box">
+        <!-- vitrine -->
         <tr>
-            <td rowspan="2">
-                <table id="window">
+            <td rowspan="3">
+                <table id="products">
                     <tr>
-                        <td>Eau</td>
-                        <td>Coca</td>
-                    </tr>
-                    <tr>
-                        <td>Sprite</td>
-                        <td>Oasis</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
             </td>
-            <td class="display">
-                Entrez votre sélection :
+        </tr>
+        <!-- display -->
+        <tr>
+            <td>
+                <table id="display">
+                    <tr>
+                        <td id="info">ENTER SELECTION</td>
+                    </tr>
+                    <tr>
+                        <td id="inpt"></td>
+                    </tr>
+                </table>
             </td>
         </tr>
+        <!-- pavé -->
         <tr>
-            <td class="display"></td>
+            <td>
+                <table id="numPad">
+                    <tr>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td id="reset">↺</td>
+                        <td>0</td>
+                        <td id="validate">❭</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- porte -->
+        <tr>
+            <td colspan="2">
+                <table id="door">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
         </tr>
     </table>
 </body>
