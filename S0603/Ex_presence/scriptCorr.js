@@ -1,29 +1,18 @@
-const colPresence = document.querySelectorAll('tbody tr')[0].children[3];
-const colAbsence = document.querySelectorAll('tbody tr')[0].children[4];
-const colState = document.querySelectorAll('tbody tr')[0].children[2];
+const colPresence = document.querySelectorAll('tbody td:nth-last-child(2)');
+const colAbsence = document.querySelectorAll('tbody td:last-child');
 
-function isPrs() {
-    
-};
+colPresence.forEach(cell => {
+    cell.addEventListener('click', function () {
+        cell.previousElementSibling.textContent = "Présent";
+        cell.textContent = "";
+        cell.nextElementSibling.textContent = "🟥";
+    });
+});
 
-// colPresence.forEach(element => {
-//     element.addEventListener('click', function () {
-//         const statCell = element.previousElementSibling;
-//         statCell.textContent = "Présent";
-//         element.classList.add("prs");
-//         if (element.nextElementSibling.classList.contains("abs")) {
-//             element.nextElementSibling.classList.remove("abs");
-//         }
-//     });
-// });
-
-// colAbsence.forEach(element => {
-//     element.addEventListener('click', function () {
-//         const statCell = element.previousElementSibling.previousElementSibling;
-//         statCell.textContent = "Absent";
-//         element.classList.add("abs");
-//         if (element.previousElementSibling.classList.contains("prs")) {
-//             element.previousElementSibling.classList.remove("prs");
-//         }
-//     })
-// });
+colAbsence.forEach(cell => {
+    cell.addEventListener('click', function () {
+        cell.parentElement.children[2].textContent = "Absent";
+        cell.previousElementSibling.textContent = "✅";
+        cell.textContent = "";
+    })
+});

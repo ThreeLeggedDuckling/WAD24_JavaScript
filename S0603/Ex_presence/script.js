@@ -1,24 +1,58 @@
-const colPresence = document.querySelectorAll('tbody>tr>td:nth-last-child(2)');
-const colAbsence = document.querySelectorAll('tbody>tr>td:last-child');
+const PRESENT = document.querySelectorAll('tbody td:nth-last-child(2)');
+const ABSENT = document.querySelectorAll('tbody td:last-child');
 
-colPresence.forEach(element => {
-    element.addEventListener('click', function () {
-        const statCell = element.previousElementSibling;
+function studentStatu(cell) {
+    const stateCell = cell.parentElement.children[2];
+    const state = cell.className;
+
+    stateCell.textContent = state;
+    cell.textContent = "";
+    if(Object.values(PRESENT).includes(cell)){
+        console.log("present");
+        cell.nextElementSibling.textContent = "🟥";
+    }
+    else{
+        console.log("absent");
+        cell.previousElementSibling.textContent = "✅";
+    }
+};
+
+PRESENT.forEach(cell => {
+    cell.classList.add('present');
+    cell.addEventListener('click', function(){
+        studentStatu(cell);
+    });
+});
+
+ABSENT.forEach(cell => {
+    cell.classList.add('absent');
+    cell.addEventListener('click', function(){
+        studentStatu(cell);
+    });
+});
+
+
+/*      V1
+
+PRESENT.forEach(cell => {
+    cell.addEventListener('click', function () {
+        const statCell = cell.previousElementSibling;
         statCell.textContent = "Présent";
-        element.classList.add("prs");
-        if (element.nextElementSibling.classList.contains("abs")) {
-            element.nextElementSibling.classList.remove("abs");
+        cell.classList.add("prs");
+        if (cell.nextElementSibling.classList.contains("abs")) {
+            cell.nextElementSibling.classList.remove("abs");
         }
     });
 });
 
-colAbsence.forEach(element => {
-    element.addEventListener('click', function () {
-        const statCell = element.previousElementSibling.previousElementSibling;
+ABSENT.forEach(cell => {
+    cell.addEventListener('click', function () {
+        const statCell = cell.previousElementSibling.previousElementSibling;
         statCell.textContent = "Absent";
-        element.classList.add("abs");
-        if (element.previousElementSibling.classList.contains("prs")) {
-            element.previousElementSibling.classList.remove("prs");
+        cell.classList.add("abs");
+        if (cell.previousElementSibling.classList.contains("prs")) {
+            cell.previousElementSibling.classList.remove("prs");
         }
     })
 });
+*/
