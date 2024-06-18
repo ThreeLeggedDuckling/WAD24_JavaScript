@@ -6,13 +6,13 @@
 function PlusDeux(nbr){
     console.log(nbr+2);
 };
-// PlusDeux(4);
+PlusDeux(4);
 
 // fonction retournant valeur sans l'afficher
 function RetourPlusDeux(nbr){
     return nbr + 2;
 };
-// console.log(RetourPlusDeux(4));
+console.log(RetourPlusDeux(4));
 
 
 /*
@@ -88,10 +88,12 @@ console.log(exmplFlch2(7, 4));
     Le nombre entré doit être un input de type nombre et le résultat affiché dans un autre lors du click sur un bouton "Calculer".
 */
 
-let userInpt = document.getElementById('valeur').valueAsNumber;
-let inptSquare = document.getElementById('resultat');
 const BTN = document.getElementById('calculer');
 
-BTN.addEventListener('click', function(){
+function doSquare(){
+    let userInpt = document.getElementById('valeur').valueAsNumber;
+    let inptSquare = document.getElementById('resultat');
     inptSquare.valueAsNumber = userInpt * userInpt;
-});
+}
+
+BTN.addEventListener('click', doSquare);
