@@ -25,68 +25,104 @@ margarita.addEventListener('click', function () {
 
 ////////     CHIPOTAGEs PERSO     ////////
 
+// récupération sections
 const productsTable = document.querySelector('#catalog tbody');
 const summary = document.querySelector('#bill tbody');
 const total = document.querySelector('#bill tfoot tr:last-of-type td');
-
-let basket = 0
-total.textContent = basket.toFixed(2);
 
 const productsCol = productsTable.querySelectorAll('tr td:first-child');
 const addCol = productsTable.querySelectorAll('tr td:nth-last-child(2)');
 const removeCol = productsTable.querySelectorAll('tr td:last-child');
 
-let prdName, prdTotPrc;
-let qntt = {};
+// déclaration variables globales
+let productName, productPrice, productTotPrice;
+let quantity = {};
 productsCol.forEach(product => {
-    qntt[`${product.textContent}`] = 0;
+    quantity[`${product.textContent}`] = 0;
 });
+total.textContent = (0).toFixed(2);
 
-
-addCol.forEach(cell => {
+// ajout eventListner
+for(const cell of addCol){
     cell.addEventListener('click', () => addTo(cell));
-});
-removeCol.forEach(cell => {
+};
+for (const cell of removeCol){
     cell.addEventListener('click', () => removeFrom(cell));
-})
+};
 
-
+// fonction ajout
 function addTo(cell) {
-    prdName = cell.parentElement.children[0].textContent;
-    prdPrice = parseFloat(cell.parentElement.children[1].textContent);
-    qntt[`${prdName}`]++;
-    prdTotPrc = prdPrice * qntt[`${prdName}`];
-    prdTotPrc = prdTotPrc.toFixed(2);
+    // valeurs variables locales
+    productName = cell.parentElement.children[0].textContent;
+    productPrice = parseFloat(cell.parentElement.children[1].textContent);
+    quantity[`${productName}`]++;
+    productTotPrice = (productPrice * quantity[`${productName}`]).toFixed(2);
 
-    basket += prdPrice;
+    // ligne déjà existante
+    if (summary.querySelector(`.${productName}`) !== null) {
+        const line = summary.querySelector(`.${productName}`);
 
-    if (summary.querySelectorAll(`.${prdName}`).length > 0) {
-        summary.querySelector(`.${prdName}`).innerHTML = `<td>${prdName}</td><td>${qntt[`${prdName}`]}</td><td class="priceT">${prdTotPrc}</td>`;
+        const product = line.children[0];
+        product.textContent = productName;
+        const productQnt = line.children[1];
+        productQnt.textContent = quantity[`${productName}`];
+        const price = line.children[2];
+        price.textContent = productTotPrice;
     }
+    // ligne inexistante
     else {
-        summary.innerHTML += `<tr class='${prdName}'><td>${prdName}</td><td>${qntt[`${prdName}`]}</td><td class="priceT">${prdTotPrc}</td></tr>`;
-    };
-}
+        const newLine = document.createElement('tr');
+        newLine.classList.add(`${productName}`);
+        summary.append(newLine);
 
+        const product = document.createElement('td');
+        product.textContent = productName;
+        const productQnt = document.createElement('td');
+        productQnt.textContent = quantity[`${productName}`];
+        const price = document.createElement('td');
+        price.textContent = productTotPrice;
+        newLine.append(product, productQnt, price);
+    };
+
+    // màj total
+    updateTotal();
+};
+
+// fonction retrait
 function removeFrom(cell) {
-    prdName = cell.parentElement.children[0].textContent;
-    prdPrice = parseFloat(cell.parentElement.children[1].textContent);
-    prdLine = summary.querySelector(`.${prdName}`);
-    if (qntt[`${prdName}`] > 0) {
-        qntt[`${prdName}`]--;
-    }
-    prdTotPrc = prdPrice * qntt[`${prdName}`];
-    prdTotPrc = prdTotPrc.toFixed(2);
+    // valeurs variables locales
+    productName = cell.parentElement.children[0].textContent;
+    const line = summary.querySelector(`.${productName}`);
 
-    if (qntt >= 0) {
-        basket -= prdPrice;
-        }
-    console.log(basket);
-
-    if (qntt[`${prdName}`] > 0) {
-        prdLine.innerHTML = `<td>${prdName}</td><td>${qntt[`${prdName}`]}</td><td class="priceT">${prdTotPrc}</td>`;
+    // quantité initiale à 1
+    if(quantity[`${productName}`] === 1){
+        quantity[`${productName}`]--;
+        line.remove();
     }
-    else {
-        prdLine.remove();
+    // quantité initiales > 1
+    else if(quantity[`${productName}`] > 1){
+        quantity[`${productName}`]--;
+        line.children[1].textContent = quantity[`${productName}`];
+        productPrice = parseFloat(cell.parentElement.children[1].textContent);
+        productTotPrice = (productPrice * quantity[`${productName}`]).toFixed(2);
+        line.children[2].textContent = productTotPrice;
     };
+    
+    // màj total
+    updateTotal();
+};
+
+// calcul total
+function calculateTotal(){
+    const subtotals = summary.querySelectorAll('tr td:last-child');
+    let basketTotal = 0;
+    for(const line of subtotals){
+        basketTotal += parseFloat(line.textContent);
+    };
+    return basketTotal;
+};
+
+// affichage total
+function updateTotal(){
+    total.textContent = calculateTotal().toFixed(2);
 };
