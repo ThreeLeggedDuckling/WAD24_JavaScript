@@ -1,9 +1,21 @@
+/* Global */
 body {
     width: 90%;
     margin: 10px auto;
 
     color: white;
     background-color: black;
+}
+
+/* Section onglets */
+#menu {
+    background-color: darkcyan;
+    border-radius: 10px;
+    padding: 2em;
+}
+
+#menu hr {
+    color: white;
 }
 
 ul {
@@ -18,13 +30,13 @@ ul {
     justify-content: space-evenly;
 }
 
-#menu {
-    background-color: darkcyan;
+
+
+/* Section jeu */
+
+#game {
+    background-color: darkgoldenrod;
     border-radius: 10px;
-
     padding: 2em;
-}
-
-#menu hr {
-    color: white;
+    margin-top: 1em;
 }

@@ -1,0 +1,20 @@
+{
+    "tabs" : [
+        {
+            "title" : "Rules",
+            "text" : "Find the code in -N- attempts or less to claim the title of Mastermind."
+        },
+        {
+            "title" : "How to Play",
+            "text" : [
+                "Click on a color to place a bead of that color in your solution, beads are placed in the order in which you pick them.",
+                "Click on 'clear' to clear your solution.",
+                "Click on 'submit' once you are satisfied with your solution to submit it."
+            ]
+        },
+        {
+            "title" : "undefined",
+            "text" : "undefined tab, no content yet"
+        }
+    ]
+}
