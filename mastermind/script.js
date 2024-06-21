@@ -1,3 +1,5 @@
+////////    HEADER    ////////
+
 // import json
 import data from './data/tabs.json' with {type: 'json'};
 const tabsData = data["tabs"];
@@ -64,19 +66,20 @@ function displayTab(event){
     };
 };
 
-// base jeu
+
+////////    JEU    ////////
+
+// récupération éléments DOM
+const tryCount = document.getElementById('tryCount');
+const beads = document.getElementById('beads');
+const roundsDisplay = document.getElementById('gameDisplay');
+
 
 // essais
-const tryCount = document.getElementById('tryCount');
 let tries = 10;
 tryCount.textContent = tries;
 
-// jeu
-const roundsDisplay = document.getElementById('gameDisplay');
-console.log(roundsDisplay);
-
 // billes
-const beads = document.getElementById('beads');
 const colors = ["red", "yellow", "green", "blue", "purple"];
 for(const bead in colors){
     const td = document.createElement('td');
@@ -84,6 +87,20 @@ for(const bead in colors){
     td.className = colors[bead];
     td.addEventListener('click', selectBead);   // fonction  en définition 
 }
+
+// jeu
+for(let i = tries; i > 0; i--){
+    const tr = document.createElement('tr');
+    tr.id = i;
+    roundsDisplay.append(tr);
+
+    const tryTd = document.createElement('td');
+    for(let i = 0; i < 6; i++){
+        const td = 3; // valeur random pour qu'il me laisse en paix
+    }
+    
+}
+console.log(roundsDisplay);
 
 
 /*

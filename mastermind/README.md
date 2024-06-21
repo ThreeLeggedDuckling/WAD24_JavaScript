@@ -25,17 +25,19 @@ Here is how I'm trying to proceed :
     - [ ] Create game functionality
 
 Further steps when inital version works :
-1. Add choice of difficulty
+- Add responsivity 
+- Add choice of difficulty
     - variation of code size
     - variation of tries
     - variation on possible colors
-2. Add color theme choice (dark/light)
-3. Add temp scoreboard
-4. Add timer
-5. Calculate score based on score and time
+- Add color theme choice (dark/light)
+- Add temp scoreboard
+- Add timer
+- Calculate score based on score and time
 
 
 
 
 [^1]: To import tabs data from JSOn I use `import data from 'data.json' with {type: 'json'};`.
-    This method isn't supported by Mozilla's Firefox as of version 127.0 but should work fine in other browsers.(source : [Can I use](https://caniuse.com/mdn-javascript_statements_import_import_attributes_type_json))
+    This method isn't supported by Mozilla's Firefox as of version 127.0 but should work fine in other browsers
+    (source : [Can I use](https://caniuse.com/mdn-javascript_statements_import_import_attributes_type_json))
