@@ -40,3 +40,25 @@ ul {
     padding: 2em;
     margin-top: 1em;
 }
+
+#beads td {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+}
+
+.red {
+    background-color: red;
+}
+.yellow {
+    background-color: yellow;
+}
+.green {
+    background-color: green;
+}
+.blue {
+    background-color: blue;
+}
+.purple {
+    background-color: purple;
+}
