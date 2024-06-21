@@ -1,4 +1,4 @@
-# About Mastermind Project
+# About This Project
 
 ## Objective
 
@@ -11,14 +11,18 @@ The objective of this project is to make a simple Mastermind game with a dynamic
 
 Here is how I'm trying to proceed :
 
-1. ☑ Create HTML bone structure
-2. ☑ Create minimal CSS style
-3. ☑ Create info tabs
-    1. ☑ Create JSON file with tabs content
-    2. ☑ Use data from JSON to create tabs[^1]
-    3. ☑ Create functionality to show/hide tabs info on click
-4. ☑ Create a try counter
-5. ☐ Create game bone structure
+- [x] Create HTML bone structure
+- [x] Create minimal CSS style
+- [x] Create info tabs
+    - [x] Create JSON file with tabs content
+    - [x] Use data from JSON to create tabs[^1]
+    - [x] Create functionality to show/hide tabs info on click
+- [ ] Create game
+    - [x] Create a try counter
+    - [ ] Create game bone structure
+    - [ ] Create beads
+    - [ ] Create round functionality
+    - [ ] Create game functionality
 
 Further steps when inital version works :
 1. Add choice of difficulty
@@ -30,9 +34,8 @@ Further steps when inital version works :
 4. Add timer
 5. Calculate score based on score and time
 
+
+
+
 [^1]: To import tabs data from JSOn I use `import data from 'data.json' with {type: 'json'};`.
     This method isn't supported by Mozilla's Firefox as of version 127.0 but should work fine in other browsers.(source : [Can I use](https://caniuse.com/mdn-javascript_statements_import_import_attributes_type_json))
-
-    
-## Notes
-

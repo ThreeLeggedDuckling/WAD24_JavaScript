@@ -71,6 +71,10 @@ const tryCount = document.getElementById('tryCount');
 let tries = 10;
 tryCount.textContent = tries;
 
+// jeu
+const roundsDisplay = document.getElementById('gameDisplay');
+console.log(roundsDisplay);
+
 // billes
 const beads = document.getElementById('beads');
 const colors = ["red", "yellow", "green", "blue", "purple"];
@@ -78,7 +82,7 @@ for(const bead in colors){
     const td = document.createElement('td');
     beads.append(td);
     td.className = colors[bead];
-    td.addEventListener('click', selectBead);   // fonction définie 
+    td.addEventListener('click', selectBead);   // fonction  en définition 
 }
 
 
@@ -95,7 +99,7 @@ for(const bead in colors){
 */
 
 
-
+// à reprendre
 function selectBead(event){
     const bead = event.target;
     console.log('clicked', bead.className);
@@ -113,7 +117,3 @@ function selectBead(event){
     //     tr.append(td)
     // }
 }
-
-// jeu
-const roundsDisplay = document.getElementById('gameDisplay');
-console.log(roundsDisplay);
