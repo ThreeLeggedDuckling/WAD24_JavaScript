@@ -19,13 +19,14 @@ Here is how I'm trying to proceed :
     - [x] Create functionality to show/hide tabs info on click
 - [ ] Create game
     - [x] Create a try counter
-    - [x] Create game bone structure
+    - [ ] Create game bone structure
     - [x] Create beads
     - [x] Create round functionality
     - [ ] Create game functionality
 
 Further steps when inital version works :
-- Add responsivity 
+- Add choice of page language
+- Add responsivity
 - Add choice of difficulty
     - variation of code size
     - variation of tries
@@ -38,5 +39,6 @@ Further steps when inital version works :
 
 
 
-[^1]: To import data from the .json I use `import data from 'data.json' with {type: 'json'};`, this method isn't supported by Mozilla's Firefox as of version 127.0 but should work fine in other browsers
-    (source : [Can I use](https://caniuse.com/mdn-javascript_statements_import_import_attributes_type_json)).
+[^1]: To import data from the .json I use `import data from 'data.json' with {type: 'json'};`, this method isn't supported by Mozilla's Firefox as of version 127.0 but should work fine in other browsers.
+
+    (source : [Can I use](https://caniuse.com/mdn-javascript_statements_import_import_attributes_type_json))

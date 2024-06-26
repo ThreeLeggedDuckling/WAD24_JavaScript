@@ -70,37 +70,39 @@ function displayTab(event){
 ////////    JEU    ////////
 
 // récupération éléments DOM
+const interactive = document.getElementById('interactive');
 const tryCount = document.getElementById('tryCount');
+const endDisplay = document.getElementById('ending');
 const beads = document.getElementById('beads');
 const roundsDisplay = document.getElementById('gameDisplay');
-
 const clearBtn = document.getElementById('clear');
-clearBtn.textContent = 'clear';
 const submitBtn = document.getElementById('submit');
+
+
+// ajout fonctionnalité boutons
+clearBtn.textContent = 'clear';
+clearBtn.addEventListener('click', clearLine);
 submitBtn.textContent = 'submit';
+submitBtn.addEventListener('click', endRound);
 
-
-
-// billes
-const colors = ["red", "yellow", "green", "blue", "purple"];
+// création billes
+const colors = ['red', 'yellow', 'green', 'blue', 'purple'];
 for(const bead in colors){
     const td = document.createElement('td');
     beads.append(td);
     td.className = colors[bead];
     td.addEventListener('click', selectBead);
-}
+};
 
 // fonction sélection bille
 function selectBead(event){
     const bead = event.target;
-    console.log('clicked', bead.className);
     const cell = document.getElementById(tries).querySelector('.empty');
-    console.log('cell', cell);
     if(cell !== null){
         cell.className = bead.className;
         cell.addEventListener('click', removeBead);
     }
-}
+};
 
 // fonction retrait bille grille
 function removeBead(event){
@@ -108,10 +110,129 @@ function removeBead(event){
     console.log('clicked to remove', bead.className);
     bead.className = 'empty';
     bead.removeEventListener('click', removeBead);
+};
+
+// fonction vider ligne
+function clearLine(){
+    const line = document.getElementById(tries).children;
+    for(const slot of line){
+        slot.className = 'empty';
+    };
+};
+
+// création ligne
+function newRound(){
+    tryCount.textContent = tries;
+    console.log('start round', tries);
+    const tr = document.createElement('tr');
+    tr.id = tries;
+    roundsDisplay.append(tr);
+    
+    for(let i = 0; i < codeSize; i++){
+        const td = document.createElement('td');
+        td.className = 'empty'
+        tr.append(td);
+    };
+};
+
+// fonction submit
+function endRound(){
+    const line = document.getElementById(tries).children;
+    let attempt = [];
+    for(const slot of line){
+        attempt.push(slot.className);
+    };
+
+    if(!attempt.includes('empty')){
+        console.log('full line -> end round', tries);
+        checkTry(attempt);
+    };
+};
+
+// fonction vérification fin round
+function checkTry(attempt){
+    console.log('SUBMIT >>> ', attempt);
+    console.log('SOLUTION >>> ', code);
+    console.log('match', (attempt.join() === code.join()));  // quickfix dégeulasse
+    if(compareArrays(attempt, code)){
+        victoryDisplay();
+    }
+    else {
+        tries--;
+        if(tries > 0){
+            newRound();
+        }
+        else {
+            defeatDisplay();
+        };
+    };
+}
+
+// fonction comparaison
+function compareArrays(attempt, solution){
+    for(let i = 0; i < attempt.length; i++){
+        if(attempt[i] !== solution[i]){
+            return false;
+        };
+    };
+    return true;
+}
+
+// fonction affichage victoire
+function victoryDisplay(){
+
+    interactive.style.contentVisibility = 'hidden';
+
+    const h2 = document.createElement('h2');
+    h2.textContent = 'I dub thee Mastermind !'
+    const p = document.createElement('p');
+    p.textContent = `It took you ${11 - tries} attempts to find the code.`
+    const table = document.createElement('table');
+    endDisplay.append(h2, p, table);
+
+    const tr = document.createElement('tr');
+    table.append(tr);
+
+    for(const bead in code){
+        const td = document.createElement('td');
+        td.className = code[bead];
+        tr.append(td);
+    };
+}
+
+// fonction affichage défaite
+function defeatDisplay(){
+
+    interactive.style.contentVisibility;
+
+    const h2 = document.createElement('h2');
+    h2.textContent = 'Oh no ...'
+    const p = document.createElement('p');
+    p.textContent = 'You didn\'t find the code, it was:'
+    const table = document.createElement('table');
+    endDisplay.append(h2, p, table);
+
+    const tr = document.createElement('tr');
+    table.append(tr);
+
+    for(const bead in code){
+        const td = document.createElement('td');
+        td.className = code[bead];
+        tr.append(td);
+    };
 }
 
 
+
+
+
+
+////////    BYPASS TEMPORAIRES    ////////
+
+
 /*
+    NOTES
+
     fonctionnement :
         - à chaque tentative, une nouvelle ligne apparaît si tries > 0
         - chaque ligne est déjà complète avec une classe empty
@@ -122,43 +243,16 @@ function removeBead(event){
         --> table.prepend(tr), tr.append(tds)
 */
 
-
 // essais
-let tries = 10;
-tryCount.textContent = tries;
-
-// création ligne
-if (tries > 0){
-    const tr = document.createElement('tr');
-    tr.id = tries;
-    roundsDisplay.append(tr);
-    
-    for(let i = 0; i < 6; i++){
-        const td = document.createElement('td');
-        td.className = 'empty'
-        tr.append(td);
-    }
-}
+let tries = 3;
 
 
+// code
+let codeSize = 6;
+let code = ['red', 'red', 'green', 'green', 'purple', 'purple'];
 
 
-
-
-// for(let i = tries; i >= 1; i--){
-//     const tr = document.createElement('tr');
-//     tr.id = i;
-//     roundsDisplay.append(tr);
-    
-//     for(let i = 0; i < 6; i++){
-//         const td = document.createElement('td');
-//         td.className = 'empty'
-//         tr.append(td);
-//     }
-// }
-// console.log(roundsDisplay.children);
-
-
-
-
-
+// appel newRound
+if(roundsDisplay.children.length == 0){
+    newRound();
+};
