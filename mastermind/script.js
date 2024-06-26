@@ -154,10 +154,11 @@ function checkTry(attempt){
     console.log('SUBMIT >>> ', attempt);
     console.log('SOLUTION >>> ', code);
     console.log('match', (attempt.join() === code.join()));  // quickfix dégeulasse
-    if(compareArrays(attempt, code)){
+    if(attempt.join() == code.join()){
         victoryDisplay();
     }
     else {
+        compareArrays(attempt, code)
         tries--;
         if(tries > 0){
             newRound();
@@ -170,13 +171,31 @@ function checkTry(attempt){
 
 // fonction comparaison
 function compareArrays(attempt, solution){
-    for(let i = 0; i < attempt.length; i++){
-        if(attempt[i] !== solution[i]){
-            return false;
+    let right = [];
+    let miss = [];
+
+    // bien placé
+    attempt.forEach((bead, index) => {
+        if(bead == solution[index]){
+            right.push(index);
         };
-    };
-    return true;
-}
+    });
+    console.log('OK >>> ', right);
+
+    // mal placé
+    attempt.forEach((beadA, indexA) => {
+        solution.forEach((beadS, indexS) => {
+            if(beadA == beadS && !right.includes(indexS) && !right.includes(indexA) && !miss.includes(indexS)){
+                miss.push(indexS);
+            };
+        });
+    });
+    console.log('MISS >>> ', miss);
+};
+
+// afficher justes et mal placés ???
+
+
 
 // fonction affichage victoire
 function victoryDisplay(){
