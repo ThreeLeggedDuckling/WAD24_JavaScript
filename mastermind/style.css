@@ -41,10 +41,19 @@ ul {
     margin-top: 1em;
 }
 
+#gameDisplay {
+    background-color: grey;
+    margin-top: 1.5em;
+}
+
 td {
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
+}
+
+#gameDisplay {
+    border-spacing: 0.5em;
 }
 
 .red {
@@ -61,4 +70,18 @@ td {
 }
 .purple {
     background-color: purple;
+}
+.empty {
+    background-color: black;
+    box-shadow: inset 0px 0px 15px grey;
+}
+
+button {
+    margin: 1.5em 0.05em;
+    padding: 10px;
+    color: white;
+    background-color: darkcyan;
+    border: none;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 10px darkgray;
 }

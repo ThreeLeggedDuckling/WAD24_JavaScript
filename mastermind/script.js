@@ -74,10 +74,12 @@ const tryCount = document.getElementById('tryCount');
 const beads = document.getElementById('beads');
 const roundsDisplay = document.getElementById('gameDisplay');
 
+const clearBtn = document.getElementById('clear');
+clearBtn.textContent = 'clear';
+const submitBtn = document.getElementById('submit');
+submitBtn.textContent = 'submit';
 
-// essais
-let tries = 10;
-tryCount.textContent = tries;
+
 
 // billes
 const colors = ["red", "yellow", "green", "blue", "purple"];
@@ -85,29 +87,34 @@ for(const bead in colors){
     const td = document.createElement('td');
     beads.append(td);
     td.className = colors[bead];
-    td.addEventListener('click', selectBead);   // fonction  en définition 
+    td.addEventListener('click', selectBead);
 }
 
-// jeu
-for(let i = tries; i > 0; i--){
-    const tr = document.createElement('tr');
-    tr.id = i;
-    roundsDisplay.append(tr);
-
-    const tryTd = document.createElement('td');
-    for(let i = 0; i < 6; i++){
-        const td = 3; // valeur random pour qu'il me laisse en paix
+// fonction sélection bille
+function selectBead(event){
+    const bead = event.target;
+    console.log('clicked', bead.className);
+    const cell = document.getElementById(tries).querySelector('.empty');
+    console.log('cell', cell);
+    if(cell !== null){
+        cell.className = bead.className;
+        cell.addEventListener('click', removeBead);
     }
-    
 }
-console.log(roundsDisplay);
+
+// fonction retrait bille grille
+function removeBead(event){
+    const bead = event.target;
+    console.log('clicked to remove', bead.className);
+    bead.className = 'empty';
+    bead.removeEventListener('click', removeBead);
+}
 
 
 /*
     fonctionnement :
-        à chaque tentative, une nouvelle ligne est créée si tries > 0
-        chaque ligne est déjà complète avec une classe emptyCase
-        faire style CSS emptyCase -> border / box-shadow ?
+        - à chaque tentative, une nouvelle ligne apparaît si tries > 0
+        - chaque ligne est déjà complète avec une classe empty
 
     note méthode :
         append = ajoute à la fin
@@ -116,21 +123,42 @@ console.log(roundsDisplay);
 */
 
 
-// à reprendre
-function selectBead(event){
-    const bead = event.target;
-    console.log('clicked', bead.className);
+// essais
+let tries = 10;
+tryCount.textContent = tries;
 
-    const lines = roundsDisplay.children;
-    if(lines.length < 10){
-        const line = document.createElement('tr');
+// création ligne
+if (tries > 0){
+    const tr = document.createElement('tr');
+    tr.id = tries;
+    roundsDisplay.append(tr);
+    
+    for(let i = 0; i < 6; i++){
+        const td = document.createElement('td');
+        td.className = 'empty'
+        tr.append(td);
     }
-
-    // if(lines.length <= 6){
-    //     if(lines.children <=)
-    //     const tr = document.createElement('tr');
-    //     const td = document.createElement('td');
-    //     roundsDisplay.append(tr);
-    //     tr.append(td)
-    // }
 }
+
+
+
+
+
+
+// for(let i = tries; i >= 1; i--){
+//     const tr = document.createElement('tr');
+//     tr.id = i;
+//     roundsDisplay.append(tr);
+    
+//     for(let i = 0; i < 6; i++){
+//         const td = document.createElement('td');
+//         td.className = 'empty'
+//         tr.append(td);
+//     }
+// }
+// console.log(roundsDisplay.children);
+
+
+
+
+
