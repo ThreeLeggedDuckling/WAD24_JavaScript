@@ -4,15 +4,11 @@
 import data from './data/tabs.json' with {type: 'json'};
 const tabsData = data["tabs"];
 
-// récupération éléments DOM
-const tabs = document.getElementById('tabs');
-const tabDisplay = document.getElementById('tabDisplay');
-
 // création onglets
 for(const tab of tabsData){
     const li = document.createElement('li');
     li.textContent = tab["title"];
-    li.addEventListener('click', displayTab);
+    li.className = 'infoTab';
     tabs.append(li);
 
     // création contenu onglets
@@ -41,9 +37,16 @@ for(const tab of tabsData){
     }
 };
 
+// délégation évènement menu
+tabs.addEventListener('click', (event) => {
+    if(event.target.className == 'infoTab'){
+        console.log(event.target.textContent);
+        displayTab(event.target.textContent);
+    };
+});
+
 // fonction affichage contenu onglets
-function displayTab(event){
-    const tab = event.target.textContent;
+function displayTab(tab){
     // none -> tab
     if(tabDisplay.className === ""){
         tabDisplay.className = tab;
@@ -64,20 +67,11 @@ function displayTab(event){
         txt = document.getElementById(tabDisplay.className);
         txt.style.contentVisibility = 'visible';
     };
+    console.log('END :>>', tabDisplay.className);
 };
 
 
 ////////    JEU    ////////
-
-// récupération éléments DOM
-const interactive = document.getElementById('interactive');
-const tryCount = document.getElementById('tryCount');
-const endDisplay = document.getElementById('ending');
-const beads = document.getElementById('beads');
-const roundsDisplay = document.getElementById('gameDisplay');
-const clearBtn = document.getElementById('clear');
-const submitBtn = document.getElementById('submit');
-
 
 // ajout fonctionnalité boutons
 clearBtn.textContent = 'clear';
@@ -126,7 +120,7 @@ function newRound(){
     console.log('start round', tries);
     const tr = document.createElement('tr');
     tr.id = tries;
-    roundsDisplay.append(tr);
+    gameDisplay.append(tr);
     
     for(let i = 0; i < codeSize; i++){
         const td = document.createElement('td');
@@ -260,7 +254,16 @@ function defeatDisplay(){
         append = ajoute à la fin
         prepend = ajoute en premier
         --> table.prepend(tr), tr.append(tds)
+    _____________________________________________________________
+
+    Découverte géniale (merci Leal) :
+        On peut accéder directement à un élément  HTML par son id sans fair une variable JS.
+    
+    Exemple :
+        <ul id="tabs"></ul>
+        console.log(tabs)
 */
+
 
 // essais
 let tries = 3;
@@ -272,6 +275,6 @@ let code = ['red', 'red', 'green', 'green', 'purple', 'purple'];
 
 
 // appel newRound
-if(roundsDisplay.children.length == 0){
+if(gameDisplay.children.length == 0){
     newRound();
 };
