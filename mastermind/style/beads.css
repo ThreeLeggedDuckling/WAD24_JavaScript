@@ -1,0 +1,42 @@
+td {
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+}
+
+.check {
+    border-spacing: 3px;
+}
+
+.check td {
+    width: 0.3em;
+    height: 0.3em;
+    border-spacing: 0;
+    background-color: rgb(63, 63, 63);
+    /* box-shadow: inset 0px 0px 2px darkgray; */
+}
+
+
+.red {
+    background-color: red;
+}
+.yellow {
+    background-color: yellow;
+}
+.green {
+    background-color: green;
+}
+.blue {
+    background-color: blue;
+}
+.purple {
+    background-color: purple;
+}
+.empty {
+    background-color: black;
+    box-shadow: inset 0px 0px 15px grey;
+}
+
+/* .none{
+
+} */

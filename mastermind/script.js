@@ -37,7 +37,7 @@ for(const tab of tabsData){
     }
 };
 
-// délégation évènement menu
+// délégation évènement section menu
 tabs.addEventListener('click', (event) => {
     if(event.target.className == 'infoTab'){
         console.log(event.target.textContent);
@@ -73,20 +73,28 @@ function displayTab(tab){
 
 ////////    JEU    ////////
 
-// ajout fonctionnalité boutons
-clearBtn.textContent = 'clear';
-clearBtn.addEventListener('click', clearLine);
-submitBtn.textContent = 'submit';
-submitBtn.addEventListener('click', endRound);
-
-// création billes
+// création billes + texte boutons
 const colors = ['red', 'yellow', 'green', 'blue', 'purple'];
 for(const bead in colors){
     const td = document.createElement('td');
     beads.append(td);
     td.className = colors[bead];
-    td.addEventListener('click', selectBead);
 };
+clearBtn.textContent = 'clear';
+submitBtn.textContent = 'submit';
+
+// délégation évènements section jeu
+game.addEventListener('click', (event) => {
+    if(event.target === clearBtn){
+        clearLine();
+    }
+    else if(event.target === submitBtn){
+        endRound();
+    }
+    else if(colors.includes(event.target.className)){
+        selectBead(event);
+    }
+});
 
 // fonction sélection bille
 function selectBead(event){
@@ -109,8 +117,12 @@ function removeBead(event){
 // fonction vider ligne
 function clearLine(){
     const line = document.getElementById(tries).children;
+    console.log(line);
     for(const slot of line){
-        slot.className = 'empty';
+        console.log(typeof(slot));
+        if(!(slot.classList.contains('check'))){
+            slot.className = 'empty';
+        };
     };
 };
 
@@ -118,6 +130,7 @@ function clearLine(){
 function newRound(){
     tryCount.textContent = tries;
     console.log('start round', tries);
+
     const tr = document.createElement('tr');
     tr.id = tries;
     gameDisplay.append(tr);
@@ -126,6 +139,19 @@ function newRound(){
         const td = document.createElement('td');
         td.className = 'empty'
         tr.append(td);
+    };
+
+    const checkTable = document.createElement('td');
+    checkTable.className = 'check';
+    tr.append(checkTable);
+    for(let i = 0; i < 2; i++){
+        const line = document.createElement('tr');
+        checkTable.append(line);
+        for(let i = 0; i < (codeSize / 2); i++){
+            const cell = document.createElement('td');
+            cell.className = 'wrong';
+            line.append(cell);
+        };
     };
 };
 

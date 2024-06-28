@@ -44,36 +44,7 @@ ul {
 #gameDisplay {
     background-color: grey;
     margin-top: 1.5em;
-}
-
-td {
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 50%;
-}
-
-#gameDisplay {
     border-spacing: 0.5em;
-}
-
-.red {
-    background-color: red;
-}
-.yellow {
-    background-color: yellow;
-}
-.green {
-    background-color: green;
-}
-.blue {
-    background-color: blue;
-}
-.purple {
-    background-color: purple;
-}
-.empty {
-    background-color: black;
-    box-shadow: inset 0px 0px 15px grey;
 }
 
 button {
