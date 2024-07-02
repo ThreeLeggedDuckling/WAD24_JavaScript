@@ -1,9 +1,4 @@
-#test1 th, td:not(:first-child) {
-    padding: 5px;
-    text-align: center;
-}
-
-#catalog td:nth-last-child(2), #catalog td:last-child {
+/* #catalog td:nth-last-child(2), #catalog td:last-child {
     font-weight: bolder;
     width: 10px;
     border: 1px solid black;
@@ -23,6 +18,20 @@
 }
 #catalog td:last-child:hover {
     background-color: darkred;
+} */
+
+
+
+.addBtn {
+    font-weight: 500;
+    padding: 0.3em;
+    border: 1px solid black;
+    border-radius: 10%;
+    background-color: limegreen;
+}
+
+.addBtn:hover {
+    background-color: greenyellow;
 }
 
 #bill tfoot td:last-of-type {
