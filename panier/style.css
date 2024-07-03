@@ -26,14 +26,51 @@
     font-weight: 500;
     padding: 0.3em;
     border: 1px solid black;
-    border-radius: 10%;
-    background-color: limegreen;
+    border-radius: 10px;
+    color: black;
+    background-color: #86bba0;
 }
 
 .addBtn:hover {
-    background-color: greenyellow;
+    background-color: #5c8871;
 }
 
 #bill tfoot td:last-of-type {
     text-align: right;
+}
+
+
+/* Esthetique perso */
+/* Palette : https://colorffy.com/dark-theme-generator
+    p1 : #00855b    p2 : #121212*/
+
+body {
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+}
+
+#frame {
+    width: 70%;
+    margin: 1em auto;
+    padding: 1.5em;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #282828;
+    border-radius: 10px;
+}
+
+hr {
+    width: 170px;
+    margin: 1.5em auto;
+    border-color: #b2b6b4;
+}
+
+table {
+    margin: auto;
+    color: #b2b6b4;
+}
+
+td {
+    padding: 0.5em 1em;
 }

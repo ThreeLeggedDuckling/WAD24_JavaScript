@@ -1,4 +1,4 @@
-/* VARIABLE GLOBALES */
+/*  VARIABLE GLOBALES  */
 
 const products = [
     {
@@ -23,28 +23,40 @@ const products = [
     }
 ]       // normalement viendrait d'une db
 
-let quantities = {};
+let basket = {};
 
 
-/* AFFICHAGE CATALOGUE */
+/*  AFFICHAGE CATALOGUE  */
 
-const catalog = document.querySelector('#catalog tbody');
+const catalog = document.querySelector('#catalog');
+console.log(catalog);
 products.forEach((product, index) => {
     const row = document.createElement('tr');
-    catalog.append(row);
-    
+    row.className = index;
+
     let productCell = document.createElement('td');
     productCell.textContent = product['nom'];
 
     let priceCell = document.createElement('td');
     priceCell.textContent = product['prix'].toFixed(2);
 
-    let addBtn = document.createElement('td');
-    addBtn.className = `addBtn ${index}`;
-    addBtn.textContent = 'ajouter';
-    // addBtn.addEventListener('click', addToCart);
+    let quantityCell = document.createElement('td');
+    let quantitySelect = document.createElement('select');
+    quantitySelect.name = 'quantity';
+    for(let i = 1; i <= 10; i++){
+        let quantityValue = document.createElement('option');
+        quantityValue.value = i;
+        quantityValue.textContent = i;
+        quantitySelect.append(quantityValue);
+    }
 
-    row.append(productCell, priceCell, addBtn);
+    let addBtn = document.createElement('td');
+    addBtn.className = 'addBtn';
+    addBtn.textContent = 'ajouter';
+
+    catalog.append(row);
+    row.append(productCell, priceCell, quantityCell, addBtn);
+    quantityCell.append(quantitySelect);
 });
 /*
     même chose que de faire boucle for ... of
@@ -58,21 +70,29 @@ products.forEach((product, index) => {
 */
 
 
-/* BOUTTONS AJOUTER */
+/*  AFFICHAGE PANIER  */
 
+const bill = document.
+
+/*  INTERACTIVITE  */
+
+console.log(catalog);
 catalog.addEventListener('click', (event) => {
-    // if(event.target === catalog.children.children)
-    // console.log(catalog.getElementsByClassName('addBtn').contains(event));
+
+    if(event.target.classList.contains('addBtn')){
+        addToCart(event.target);
+    }
 })
 
-console.log(catalog.children);
-console.log(catalog.getElementsByClassName('addBtn'));
+
 
 
 /* FONCTIONS */
 
-function addToCart(){
-    console.log('...');
+function addToCart(btn) {
+    let line = btn.parentElement;
+    let quantityValue = line.children[2].firstElementChild.value;
+    basket[line.className] = quantityValue;
 }
 
 
@@ -82,7 +102,7 @@ function addToCart(){
 
 
 
-
+/*      ANCIENNE VERSION
 
 const productsTable = document.querySelector('#catalog tbody');
 const summary = document.querySelector('#bill tbody');
@@ -184,3 +204,5 @@ function calculateTotal(){
 function updateTotal(){
     total.textContent = calculateTotal().toFixed(2);
 };
+
+*/
