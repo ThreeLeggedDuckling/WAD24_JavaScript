@@ -30,6 +30,8 @@ let basket = {};
 
 const catalog = document.querySelector('#catalog');
 console.log(catalog);
+const headers = document.createElement('thead');
+// const;
 products.forEach((product, index) => {
     const row = document.createElement('tr');
     row.className = index;
@@ -72,7 +74,20 @@ products.forEach((product, index) => {
 
 /*  AFFICHAGE PANIER  */
 
-const bill = document.
+const bill = document.getElementById('bill');
+function displayBill(){
+    const title = document.createElement('h2');
+    title.textContent = 'Panier';
+    const table = document.createElement('table');
+    const header = document.createElement('thead');
+    for(i = 0; i <= 3; i++){
+        const td = document.createElement('td');
+        td.textContent = `tag ${i}`;
+        header.append(td);
+    }
+    bill.append(title, table);
+    table.append(header);
+}
 
 /*  INTERACTIVITE  */
 

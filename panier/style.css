@@ -1,27 +1,3 @@
-/* #catalog td:nth-last-child(2), #catalog td:last-child {
-    font-weight: bolder;
-    width: 10px;
-    border: 1px solid black;
-    border-radius: 30%;
-}
-
-#catalog td:nth-last-child(2) {
-    background-color: green;
-}
-
-#catalog td:nth-last-child(2):hover {
-    background-color: darkgreen;
-}
-
-#catalog td:last-child {
-    background-color: red;
-}
-#catalog td:last-child:hover {
-    background-color: darkred;
-} */
-
-
-
 .addBtn {
     font-weight: 500;
     padding: 0.3em;
@@ -40,7 +16,7 @@
 }
 
 
-/* Esthetique perso */
+/* Esthetique */
 /* Palette : https://colorffy.com/dark-theme-generator
     p1 : #00855b    p2 : #121212*/
 
