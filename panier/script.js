@@ -2,45 +2,47 @@
 
 const products = [
     {
-        'nom': 'Amandes',
-        'prix': 3.20
+        'name': 'Amandes',
+        'price': 3.20
     },
     {
-        'nom': 'Banane',
-        'prix': 0.80
+        'name': 'Banane',
+        'price': 0.80
     },
     {
-        'nom': 'Citron',
-        'prix': 0.68
+        'name': 'Citron',
+        'price': 0.68
     },
     {
-        'nom': 'Durian',
-        'prix': 4.50
+        'name': 'Durian',
+        'price': 4.50
     },
     {
-        'nom': 'Echalote',
-        'prix': 0.54
+        'name': 'Echalote',
+        'price': 0.54
     }
-]       // normalement viendrait d'une db
+]
 
-let basket = {};
+const billHeader = ['produit', 'prix unitaire', 'quantité', 'sous-total'];
+
+let basket = [];
+
+const catalog = document.querySelector('#catalog');
+const bill = document.getElementById('bill');
 
 
 /*  AFFICHAGE CATALOGUE  */
 
-const catalog = document.querySelector('#catalog');
-console.log(catalog);
-const headers = document.createElement('thead');
 // const;
 products.forEach((product, index) => {
     const row = document.createElement('tr');
     row.className = index;
 
     let productCell = document.createElement('td');
-    productCell.textContent = product['nom'];
+    productCell.textContent = product['name'];
 
     let priceCell = document.createElement('td');
-    priceCell.textContent = product['prix'].toFixed(2);
+    priceCell.textContent = product['price'].toFixed(2);
 
     let quantityCell = document.createElement('td');
     let quantitySelect = document.createElement('select');
@@ -74,32 +76,102 @@ products.forEach((product, index) => {
 
 /*  AFFICHAGE PANIER  */
 
-const bill = document.getElementById('bill');
-function displayBill(){
+function initBill(){
+    const separator = document.createElement('hr');
     const title = document.createElement('h2');
     title.textContent = 'Panier';
     const table = document.createElement('table');
+    const emptyBtn = document.createElement('button');
+    emptyBtn.id = 'emptyBtn';
+    emptyBtn.textContent = 'Vider le panier';
+
     const header = document.createElement('thead');
-    for(i = 0; i <= 3; i++){
-        const td = document.createElement('td');
-        td.textContent = `tag ${i}`;
-        header.append(td);
+    for(colname of billHeader){
+        const th = document.createElement('th');
+        th.textContent = colname.toUpperCase();
+        header.append(th);
     }
-    bill.append(title, table);
-    table.append(header);
+    const body = document.createElement('tbody');
+    const footer = document.createElement('tfoot');
+    for(i = 0; i < 2; i++){
+        const line = document.createElement('tr');
+        
+        let cell;
+        if(i % 2 === 0){
+            cell = document.createElement('th');
+            cell.textContent = 'TOTAL';
+        }
+        else{
+            cell = document.createElement('td');
+            cell.id = 'totalCell';
+            cell.textContent = 'test';
+        }
+        cell.colSpan = billHeader.length;
+
+        footer.append(line);
+        line.append(cell);
+    }
+
+    bill.append(separator, title, table, emptyBtn);
+    table.append(header, body, footer);
+}
+
+function displayBill(productId){
+    let billContent = document.querySelector('tbody');
+    if(billContent == null){
+        initBill();
+        billContent = document.querySelector('tbody');
+    }
+
+    for(const product of basket){
+        let lineContent = [
+            products[productId].name,
+            products[productId].price,
+            product.quantity,
+            products[productId].price * product.quantity
+        ];
+        console.log(lineContent);
+        console.log(billContent.children);
+        console.log(checkLine(productId));
+
+        /*
+            CE QUE JE TENTAIS DE REPARER
+        */
+
+        // if(billContent.children)
+
+        const newLine = document.createElement('tr');
+        newLine.id = productId;
+        for(i = 0; i <= billHeader.length + 2; i++){
+            const cell = document.createElement('td');
+            cell.textContent = 'cell' + i;
+            newLine.append(cell);
+        }
+        billContent.append(newLine);
+    }
+}
+
+function checkLine(productId){
+    let billContent = document.querySelector('tbody')
+    for(const line in billContent){
+        console.log('line', line);
+        console.log('line.id', line.id);
+        if(line.id === productId)return true;
+        else return false;
+    }
 }
 
 /*  INTERACTIVITE  */
 
-console.log(catalog);
-catalog.addEventListener('click', (event) => {
+document.addEventListener('click', (event) => {
 
     if(event.target.classList.contains('addBtn')){
         addToCart(event.target);
     }
+    else if(event.target.id == 'emptyBtn'){
+        emptyBasket();
+    }
 })
-
-
 
 
 /* FONCTIONS */
@@ -107,117 +179,26 @@ catalog.addEventListener('click', (event) => {
 function addToCart(btn) {
     let line = btn.parentElement;
     let quantityValue = line.children[2].firstElementChild.value;
-    basket[line.className] = quantityValue;
+    let addition = {
+        'productId': line.className,
+        'quantity': quantityValue
+    };
+    basket.push(addition)
+    console.log(basket);
+    displayBill(line.className);
 }
 
+function addOne(){}
+function removeOne(){}
+function removeAll(){}
 
 
-
-
-
-
-
-/*      ANCIENNE VERSION
-
-const productsTable = document.querySelector('#catalog tbody');
-const summary = document.querySelector('#bill tbody');
-const total = document.querySelector('#bill tfoot tr:last-of-type td');
-
-const productsCol = productsTable.querySelectorAll('tr td:first-child');
-const addCol = productsTable.querySelectorAll('tr td:nth-last-child(2)');
-const removeCol = productsTable.querySelectorAll('tr td:last-child');
-
-// déclaration variables globales
-let productName, productPrice, productTotPrice;
-let quantity = {};
-productsCol.forEach(product => {
-    quantity[`${product.textContent}`] = 0;
-});
-total.textContent = (0).toFixed(2);
-
-// ajout eventListner
-for(const cell of addCol){
-    cell.addEventListener('click', () => addTo(cell));
-};
-for (const cell of removeCol){
-    cell.addEventListener('click', () => removeFrom(cell));
-};
-
-// fonction ajout
-function addTo(cell) {
-    // valeurs variables locales
-    productName = cell.parentElement.children[0].textContent;
-    productPrice = parseFloat(cell.parentElement.children[1].textContent);
-    quantity[`${productName}`]++;
-    productTotPrice = (productPrice * quantity[`${productName}`]).toFixed(2);
-
-    // ligne déjà existante
-    if (summary.querySelector(`.${productName}`) !== null) {
-        const line = summary.querySelector(`.${productName}`);
-
-        const product = line.children[0];
-        product.textContent = productName;
-        const productQnt = line.children[1];
-        productQnt.textContent = quantity[`${productName}`];
-        const price = line.children[2];
-        price.textContent = productTotPrice;
+function emptyBasket(){
+    console.log('clicked empty');
+    console.log(bill.children);
+    while(bill.children.length !== 0){
+        console.log(bill.children.length);
+        bill.removeChild(bill.children[0]);
     }
-    // ligne inexistante
-    else {
-        const newLine = document.createElement('tr');
-        newLine.classList.add(`${productName}`);
-        summary.append(newLine);
-
-        const product = document.createElement('td');
-        product.textContent = productName;
-        const productQnt = document.createElement('td');
-        productQnt.textContent = quantity[`${productName}`];
-        const price = document.createElement('td');
-        price.textContent = productTotPrice;
-        newLine.append(product, productQnt, price);
-    };
-
-    // màj total
-    updateTotal();
-};
-
-// fonction retrait
-function removeFrom(cell) {
-    // valeurs variables locales
-    productName = cell.parentElement.children[0].textContent;
-    const line = summary.querySelector(`.${productName}`);
-
-    // quantité initiale à 1
-    if(quantity[`${productName}`] === 1){
-        quantity[`${productName}`]--;
-        line.remove();
-    }
-    // quantité initiales > 1
-    else if(quantity[`${productName}`] > 1){
-        quantity[`${productName}`]--;
-        line.children[1].textContent = quantity[`${productName}`];
-        productPrice = parseFloat(cell.parentElement.children[1].textContent);
-        productTotPrice = (productPrice * quantity[`${productName}`]).toFixed(2);
-        line.children[2].textContent = productTotPrice;
-    };
-    
-    // màj total
-    updateTotal();
-};
-
-// calcul total
-function calculateTotal(){
-    const subtotals = summary.querySelectorAll('tr td:last-child');
-    let basketTotal = 0;
-    for(const line of subtotals){
-        basketTotal += parseFloat(line.textContent);
-    };
-    return basketTotal;
-};
-
-// affichage total
-function updateTotal(){
-    total.textContent = calculateTotal().toFixed(2);
-};
-
-*/
+    basket = [];
+}
