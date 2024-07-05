@@ -130,32 +130,44 @@ function displayBill(productId){
             product.quantity,
             products[productId].price * product.quantity
         ];
-        console.log(lineContent);
-        console.log(billContent.children);
-        console.log(checkLine(productId));
+        console.log('checkLine :>> ', checkLine(productId));
 
         /*
             CE QUE JE TENTAIS DE REPARER
         */
 
-        // if(billContent.children)
-
-        const newLine = document.createElement('tr');
-        newLine.id = productId;
-        for(i = 0; i <= billHeader.length + 2; i++){
-            const cell = document.createElement('td');
-            cell.textContent = 'cell' + i;
-            newLine.append(cell);
+        if(checkLine(productId)){
+            const line = billContent.getElementById(productId);
+            for(i = 0; i <= billHeader.length + 2; i++){
+                const cell = document.createElement('td');
+                cell.textContent = '...';
+                newLine.append(cell);
+            }
+            billContent.append(newLine);
         }
-        billContent.append(newLine);
+        else{
+            const newLine = document.createElement('tr');
+            newLine.id = productId;
+            for(i = 0; i <= billHeader.length + 2; i++){
+                const cell = document.createElement('td');
+                cell.textContent = '...';
+                newLine.append(cell);
+            }
+            billContent.append(newLine);
+        }
+
+        
     }
 }
 
 function checkLine(productId){
     let billContent = document.querySelector('tbody')
-    for(const line in billContent){
-        console.log('line', line);
-        console.log('line.id', line.id);
+    console.log(billContent);
+    console.log(document.querySelector(`tbody #${productId}`));
+    // if(billContent.getElementById(productId)){
+
+    // }
+    for(const line of billContent.children){
         if(line.id === productId)return true;
         else return false;
     }

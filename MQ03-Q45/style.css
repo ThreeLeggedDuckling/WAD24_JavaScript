@@ -1,0 +1,93 @@
+/* CHRISTOPHE Mélusine - WAD24 */
+
+body {
+    color: white;
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#frame {
+    width: 70%;
+    margin: 1em auto;
+    padding: 1.5em;
+    font-family: sans-serif;
+    background-color: #282828;
+    border-radius: 10px;
+}
+
+#level {
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: 600;
+}
+
+#easy {
+    color: #53ff6e;
+}
+#medium {
+    color :#e5fd1d;
+}
+#hard {
+    color: #fc7745;
+}
+
+#flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+#game,
+#summary {
+    margin: 1em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 65%;
+    margin: auto;
+}
+
+tbody {
+    border: 1px solid #575757;
+}
+
+th, td {
+    padding: 0.5em;
+}
+
+.margin5 {
+    background-color: #ff784770;
+}
+.margin10 {
+    background-color: #ffee0470;
+}
+.margin25 {
+    background-color: #327e1470;
+}
+.win {
+    background-color: #9932cc80;
+}
+
+input {
+    border: none;
+    border-radius: 10px;
+    margin: 0.5em;
+    padding: 0.3em;
+}
+
+.invalid {
+    border: 1px solid red;
+    box-shadow: inset 0 0 3px red;
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid #575757;
+    padding: 0.3em;
+}
+
+:disabled {
+    border: none;
+}

@@ -1,0 +1,49 @@
+<!-- CHRISTOPHE Mélusine - WAD24 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>A la Poursuite du Nombre</title>
+</head>
+
+<body>
+    <div id="frame">
+
+        <h1>A la Poursuite du Nombre</h1>
+
+        <div id="level">
+            <p id="easy">FACILE</p>
+            <p id="medium">MOYEN</p>
+            <p id="hard">DIFFICILE</p>
+        </div>
+
+        <div id="flex">
+
+            <div id="game">
+                <h3>Devinez un nombre entre <span id="bottomLim"></span> et <span id="topLim"></span></h3>
+                <input type="number" id="userGuess" size="10">
+                <button id="guessBtn">Deviner</button>
+            </div>
+
+            <div id="summary">
+                <h3>Récapitulatif des valeurs</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">Valeurs tentées</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
